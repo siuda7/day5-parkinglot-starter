@@ -174,4 +174,30 @@ public class ParkingBoyTest {
         assertNotNull(ticket);
         assertTrue(parkingLot2.containsCar(car));
     }
+
+    @Test
+    void should_return_2_correct_car_when_fetch_given_car_in_both_parking_lot() {
+
+        //Given
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+
+        Car car1 = new Car();
+        Car car2 = new Car();
+
+        ParkingBoy parkingBoy = new ParkingBoy(List.of(parkingLot1, parkingLot2));
+
+        //When
+        Ticket ticket1 = parkingLot1.park(car1);
+        Ticket ticket2 = parkingLot2.park(car2);
+
+        Car fetchCar1 = parkingBoy.fetch(ticket1);
+        Car fetchCar2 = parkingBoy.fetch(ticket2);
+
+        //Then
+        assertNotNull(fetchCar1);
+        assertNotNull(fetchCar2);
+        assertEquals(car1, fetchCar1);
+        assertEquals(car2, fetchCar2);
+    }
 }

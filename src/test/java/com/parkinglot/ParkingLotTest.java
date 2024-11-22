@@ -100,7 +100,7 @@ public class ParkingLotTest {
         Ticket ticket = parkingLot.park(car);
 
         //When
-        Car fetchCar = parkingLot.fetch(ticket);
+        parkingLot.fetch(ticket);
         Car fetchSameCar = parkingLot.fetch(ticket);
 
         //Then
@@ -126,7 +126,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_err_msg_when_fetch_given_parking_lot_and_unrecognized_ticket() {
+    void should_return_unrecognized_ticket_err_msg_when_fetch_given_parking_lot_and_unrecognized_ticket() {
 
         //Given
         ParkingLot parkingLot = new ParkingLot();
@@ -142,6 +142,25 @@ public class ParkingLotTest {
         });
         assertEquals("Unrecognized parking ticket.", unRecognizedTicketException.getMessage());
 
+    }
+
+    @Test
+    void should_return_unrecognized_ticket_err_msg_when_fetch_given_parking_lot_and_used_ticket() {
+
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+
+        //When
+        parkingLot.fetch(ticket);
+        Car fetchSameCar = parkingLot.fetch(ticket);
+
+        //Then
+        assertNull(fetchSameCar);
+        Exception unRecognizedTicketException =  assertThrows(Exception.class, () -> {
+            throw new Exception("Unrecognized parking ticket.");
+        });
+        assertEquals("Unrecognized parking ticket.", unRecognizedTicketException.getMessage());
     }
     
 }

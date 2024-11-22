@@ -7,7 +7,6 @@ public class ParkingLot {
 
     public static final String UNRECOGNIZED_PARKING_TICKET_ERROR = "Unrecognized parking ticket.";
     private Map<Ticket, Car> parkingRecord = new HashMap<>();
-
     private static final int maxCapacity = 10;
 
     public Ticket park(Car car) {
@@ -19,7 +18,9 @@ public class ParkingLot {
 
     public Car fetch(Ticket ticket) {
         try {
+            if (ticket.isUsedTicket()) throw new Exception();
             Car car = parkingRecord.get(ticket);
+            ticket.useTicket();
             parkingRecord.remove(ticket);
             return car;
         } catch (Exception e){

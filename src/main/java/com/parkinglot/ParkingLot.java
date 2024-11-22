@@ -48,4 +48,8 @@ public class ParkingLot {
     public Integer getFreeCapacity() {
         return maxCapacity - parkingRecord.size();
     }
+
+    public Double getFreeCapacityRate() {
+        return (double) getFreeCapacity() / maxCapacity;
+    }
 }

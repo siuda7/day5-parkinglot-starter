@@ -155,6 +155,23 @@ public class ParkingBoyTest {
         assertNotNull(ticket);
         assertTrue(parkingLot1.containsCar(car));
 
+    }
 
+    @Test
+    void should_return_ticket_and_park_in_second_parking_lot_when_park_given_first_parking_lot_full_and_second_parking_lot_available() {
+
+        ParkingLot parkingLot1 = getFullParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+
+        Car car = new Car();
+
+        ParkingBoy parkingBoy = new ParkingBoy(List.of(parkingLot1, parkingLot2));
+
+        //When
+        Ticket ticket = parkingBoy.park(car);
+
+        //Then
+        assertNotNull(ticket);
+        assertTrue(parkingLot2.containsCar(car));
     }
 }

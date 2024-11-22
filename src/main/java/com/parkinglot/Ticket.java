@@ -17,4 +17,8 @@ public class Ticket {
     public boolean isUsedTicket() {
         return isUsed;
     }
+
+    public boolean isCorrectCar(Car car) {
+        return this.car.equals(car);
+    }
 }

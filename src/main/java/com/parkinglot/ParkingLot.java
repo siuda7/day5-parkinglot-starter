@@ -8,6 +8,18 @@ public class ParkingLot {
     private Map<Ticket, Car> parkingRecord = new HashMap<>();
     private static final int maxCapacity = 10;
 
+    public boolean isNotFull() {
+        return parkingRecord.size() < maxCapacity;
+    }
+
+    public boolean containsTicket(Ticket ticket) {
+        return parkingRecord.containsKey(ticket);
+    }
+
+    public boolean containsCar(Car car) {
+        return parkingRecord.containsValue(car);
+    }
+
     public Ticket park(Car car) {
         try {
             if (parkingRecord.size() == maxCapacity) {

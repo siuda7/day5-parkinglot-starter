@@ -2,6 +2,7 @@ package com.parkinglot;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +25,7 @@ public class ParkingBoyTest {
 
         //Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(List.of(parkingLot));
         Car car = new Car();
 
         //When
@@ -40,7 +41,7 @@ public class ParkingBoyTest {
 
         //Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(List.of(parkingLot));
         Car car = new Car();
 
         //When
@@ -59,7 +60,7 @@ public class ParkingBoyTest {
 
         //Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(List.of(parkingLot));
 
         Car car1 = new Car();
         Ticket ticket1 = parkingBoy.park(car1);
@@ -81,7 +82,7 @@ public class ParkingBoyTest {
 
         // Given
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(List.of(parkingLot));
         Ticket unrecognizedTicket = new Ticket(new Car());
 
         //When
@@ -100,7 +101,7 @@ public class ParkingBoyTest {
     void should_return_unrecognized_err_msg_and_nothing_when_fetch_given_parking_lot_parking_boy_and_used_ticket() {
 
         ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(List.of(parkingLot));
         Car car = new Car();
         Ticket ticket = parkingBoy.park(car);
 
@@ -121,7 +122,7 @@ public class ParkingBoyTest {
 
         //Given
         ParkingLot parkingLot = getFullParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingBoy parkingBoy = new ParkingBoy(List.of(parkingLot));
         Car car = new Car();
 
         //When
@@ -133,6 +134,27 @@ public class ParkingBoyTest {
             throw new NoAvailablePositionException();
         });
         assertEquals("No available position.", exception.getMessage());
+
+    }
+
+    @Test
+    void should_return_ticket_and_park_in_first_parking_lot_when_park_given_2_parking_lot_parking_boy_both_lots_available() {
+
+        //Given
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+
+        Car car = new Car();
+
+        ParkingBoy parkingBoy = new ParkingBoy(List.of(parkingLot1, parkingLot2));
+
+        //When
+        Ticket ticket = parkingBoy.park(car);
+
+        //Then
+        assertNotNull(ticket);
+        assertTrue(parkingLot1.containsCar(car));
+
 
     }
 }

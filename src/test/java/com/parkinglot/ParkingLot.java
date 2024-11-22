@@ -10,6 +10,7 @@ public class ParkingLot {
     private static final int maxCapacity = 10;
 
     public Ticket park(Car car) {
+        if (parkingRecord.size() == maxCapacity) return null;
         Ticket ticket = new Ticket(car);
         parkingRecord.put(ticket, car);
         return ticket;

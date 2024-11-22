@@ -85,7 +85,6 @@ public class ParkingLotTest {
 
         //When
         Car fetchCar = parkingLot.fetch(ticket);
-
         Car fetchSameCar = parkingLot.fetch(ticket);
 
         //Then
@@ -94,16 +93,28 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_null_when_park_given_parking_lot_full_and_ticket() {
+    void should_return_null_when_park_given_parking_lot_full_and_car() {
 
         //Given
-
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        // Add 10 cars to parking lot
+        parkingLot.park(car);
+        parkingLot.park(car);
+        parkingLot.park(car);
+        parkingLot.park(car);
+        parkingLot.park(car);
+        parkingLot.park(car);
+        parkingLot.park(car);
+        parkingLot.park(car);
+        parkingLot.park(car);
+        parkingLot.park(car);
 
         //When
-
+        Ticket ticket = parkingLot.park(car);
 
         //Then
-
+        assertNull(ticket);
 
     }
     

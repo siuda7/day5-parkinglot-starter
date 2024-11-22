@@ -64,5 +64,25 @@ public class ParkingBoyTest {
 
     }
 
+    @Test
+    void should_return_unrecognized_err_msg_and_nothing_when_fetch_given_parking_lot_parking_boy_and_wrong_ticket() {
+
+        // Given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Ticket unrecognizedTicket = new Ticket(new Car());
+
+        //When
+        Car car =parkingBoy.fetch(unrecognizedTicket);
+
+        //Then
+        assertNull(car);
+        Exception unRecognizedTicketException =  assertThrows(UnrecognizedParkingException.class, () -> {
+            throw new UnrecognizedParkingException();
+        });
+        assertEquals("Unrecognized parking ticket.", unRecognizedTicketException.getMessage());
+
+    }
+
 
 }

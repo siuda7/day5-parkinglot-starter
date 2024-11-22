@@ -8,7 +8,7 @@ public class ParkingLot {
     private Map<Ticket, Car> parkingRecord = new HashMap<>();
 
     public Ticket park(Car car) {
-        Ticket ticket = new Ticket();
+        Ticket ticket = new Ticket(car);
         parkingRecord.put(ticket, car);
         return ticket;
     }

@@ -30,5 +30,21 @@ public class SuperParkingBoyTest {
 
     }
 
+    @Test
+    void should_return_park_in_first_parking_lot_when_park_given_() {
 
+        //Given
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+
+        SuperParkingBoy superParkingBoy = new SuperParkingBoy(List.of(parkingLot1, parkingLot2));
+
+        //When
+        Car car = new Car();
+        Ticket ticket = superParkingBoy.park(car);
+
+        //The
+        assertNotNull(ticket);
+        assertTrue(parkingLot1.containsCar(car));
+    }
 }

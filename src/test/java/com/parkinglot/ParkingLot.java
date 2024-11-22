@@ -17,10 +17,13 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) {
-        if (ticket.isUsed()) return null;
+        if (parkingRecord.containsKey(ticket)) {
+            Car car = parkingRecord.get(ticket);
+            parkingRecord.remove(ticket);
+            return car;
+        }
         else {
-            ticket.useTicket();
-            return parkingRecord.get(ticket);
+            return null;
         }
     }
 }

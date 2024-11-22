@@ -110,5 +110,19 @@ public class ParkingLotTest {
         assertNull(ticket);
 
     }
+
+    @Test
+    void should_return_err_msg_when_fetch_given_parking_lot_and_unrecognized_ticket() {
+
+        //Given
+
+
+        //When
+
+
+        //Then
+
+
+    }
     
 }

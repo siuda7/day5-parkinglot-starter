@@ -6,7 +6,7 @@ import java.util.Map;
 public class ParkingLot {
 
     private Map<Ticket, Car> parkingRecord = new HashMap<>();
-    private static final int maxCapacity = 10;
+    private static final Integer maxCapacity = 10;
 
     public boolean isNotFull() {
         return parkingRecord.size() < maxCapacity;
@@ -43,5 +43,9 @@ public class ParkingLot {
         } catch (Exception e){
             return null;
         }
+    }
+
+    public Integer getFreeCapacity() {
+        return maxCapacity - parkingRecord.size();
     }
 }

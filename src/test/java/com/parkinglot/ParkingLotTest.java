@@ -1,6 +1,8 @@
 package com.parkinglot;
 import org.junit.jupiter.api.Test;
 
+import java.util.stream.IntStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
@@ -99,16 +101,7 @@ public class ParkingLotTest {
         ParkingLot parkingLot = new ParkingLot();
         Car car = new Car();
         // Add 10 cars to parking lot
-        parkingLot.park(car);
-        parkingLot.park(car);
-        parkingLot.park(car);
-        parkingLot.park(car);
-        parkingLot.park(car);
-        parkingLot.park(car);
-        parkingLot.park(car);
-        parkingLot.park(car);
-        parkingLot.park(car);
-        parkingLot.park(car);
+        IntStream.range(0, 10).forEach(index -> parkingLot.park(car));
 
         //When
         Ticket ticket = parkingLot.park(car);

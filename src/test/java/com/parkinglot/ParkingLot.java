@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class ParkingLot {
 
-    public static final String UNRECOGNIZED_PARKING_TICKET_ERROR = "Unrecognized parking ticket.";
     private Map<Ticket, Car> parkingRecord = new HashMap<>();
     private static final int maxCapacity = 10;
 
@@ -18,13 +17,12 @@ public class ParkingLot {
 
     public Car fetch(Ticket ticket) {
         try {
-            if (ticket.isUsedTicket()) throw new Exception();
+            if (ticket.isUsedTicket()) throw new UnrecognizedParkingException();
             Car car = parkingRecord.get(ticket);
             ticket.useTicket();
             parkingRecord.remove(ticket);
             return car;
-        } catch (Exception e){
-            System.out.println(UNRECOGNIZED_PARKING_TICKET_ERROR);
+        } catch (UnrecognizedParkingException e){
             return null;
         }
     }

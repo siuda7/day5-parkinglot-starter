@@ -20,6 +20,16 @@ public class ParkingLotTest {
     private String systemOut() {
         return outContent.toString();
     }
+
+    private ParkingLot getFullParkingLot() {
+
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+
+        IntStream.range(0, 10).forEach(index -> parkingLot.park(car));
+
+        return parkingLot;
+    }
     
     @Test
     void should_return_ticket_when_park_given_a_car() {
@@ -112,10 +122,9 @@ public class ParkingLotTest {
     void should_return_null_when_park_given_parking_lot_full_and_car() {
 
         //Given
-        ParkingLot parkingLot = new ParkingLot();
+        ParkingLot parkingLot = getFullParkingLot();
         Car car = new Car();
         // Add 10 cars to parking lot
-        IntStream.range(0, 10).forEach(index -> parkingLot.park(car));
 
         //When
         Ticket ticket = parkingLot.park(car);
@@ -137,8 +146,8 @@ public class ParkingLotTest {
 
         //Then
         assertNull(car);
-        Exception unRecognizedTicketException =  assertThrows(Exception.class, () -> {
-            throw new Exception("Unrecognized parking ticket.");
+        Exception unRecognizedTicketException =  assertThrows(UnrecognizedParkingException.class, () -> {
+            throw new UnrecognizedParkingException();
         });
         assertEquals("Unrecognized parking ticket.", unRecognizedTicketException.getMessage());
 
@@ -157,10 +166,24 @@ public class ParkingLotTest {
 
         //Then
         assertNull(fetchSameCar);
-        Exception unRecognizedTicketException =  assertThrows(Exception.class, () -> {
-            throw new Exception("Unrecognized parking ticket.");
+        Exception unRecognizedTicketException =  assertThrows(UnrecognizedParkingException.class, () -> {
+            throw new UnrecognizedParkingException();
         });
         assertEquals("Unrecognized parking ticket.", unRecognizedTicketException.getMessage());
+    }
+
+    @Test
+    void should_return_no_available_err_msg_when_park_given_parking_lot_and_parking_lot_full() {
+
+        //Given
+
+
+        //When
+
+
+        //Then
+
+
     }
     
 }

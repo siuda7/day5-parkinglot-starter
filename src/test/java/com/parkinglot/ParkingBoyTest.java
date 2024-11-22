@@ -200,4 +200,26 @@ public class ParkingBoyTest {
         assertEquals(car1, fetchCar1);
         assertEquals(car2, fetchCar2);
     }
+
+    @Test
+    void should_return_unrecongized_err_when_fecth_given_unrecognized_ticket_and_2_parking_lot() {
+
+        // Given
+        ParkingLot parkingLot1 = new ParkingLot();
+        ParkingLot parkingLot2 = new ParkingLot();
+
+
+        ParkingBoy parkingBoy = new ParkingBoy(List.of(parkingLot1, parkingLot2));
+        Ticket unrecognizedTicket = new Ticket(new Car());
+
+        //When
+        Car car = parkingBoy.fetch(unrecognizedTicket);
+
+        //Then
+        assertNull(car);
+        Exception unRecognizedTicketException =  assertThrows(UnrecognizedParkingException.class, () -> {
+            throw new UnrecognizedParkingException();
+        });
+        assertEquals("Unrecognized parking ticket.", unRecognizedTicketException.getMessage());
+    }
 }

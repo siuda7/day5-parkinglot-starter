@@ -17,10 +17,6 @@ public class ParkingLotTest {
         System.setOut(new PrintStream(outContent));
     }
 
-    private String systemOut() {
-        return outContent.toString();
-    }
-
     private ParkingLot getFullParkingLot() {
 
         ParkingLot parkingLot = new ParkingLot();

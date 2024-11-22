@@ -7,6 +7,8 @@ public class ParkingLot {
 
     private Map<Ticket, Car> parkingRecord = new HashMap<>();
 
+    private static final int maxCapacity = 10;
+
     public Ticket park(Car car) {
         Ticket ticket = new Ticket(car);
         parkingRecord.put(ticket, car);
@@ -14,6 +16,10 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) {
-        return parkingRecord.get(ticket);
+        if (ticket.isUsed()) return null;
+        else {
+            ticket.useTicket();
+            return parkingRecord.get(ticket);
+        }
     }
 }

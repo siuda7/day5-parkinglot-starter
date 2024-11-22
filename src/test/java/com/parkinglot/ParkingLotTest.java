@@ -74,5 +74,37 @@ public class ParkingLotTest {
         assertNull(fetchWrongCar);
 
     }
+
+    @Test
+    void should_return_nothing_when_fetch_given_parking_lot_and_used_ticket() {
+
+        //Given
+        ParkingLot parkingLot = new ParkingLot();
+        Car car = new Car();
+        Ticket ticket = parkingLot.park(car);
+
+        //When
+        Car fetchCar = parkingLot.fetch(ticket);
+
+        Car fetchSameCar = parkingLot.fetch(ticket);
+
+        //Then
+        assertNull(fetchSameCar);
+
+    }
+
+    @Test
+    void should_return_null_when_park_given_parking_lot_full_and_ticket() {
+
+        //Given
+
+
+        //When
+
+
+        //Then
+
+
+    }
     
 }

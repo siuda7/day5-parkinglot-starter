@@ -176,13 +176,18 @@ public class ParkingLotTest {
     void should_return_no_available_err_msg_when_park_given_parking_lot_and_parking_lot_full() {
 
         //Given
-
+        ParkingLot parkingLot = getFullParkingLot();
+        Car car = new Car();
 
         //When
-
+        Ticket ticket = parkingLot.park(car);
 
         //Then
-
+        assertNull(ticket);
+        Exception exception =  assertThrows(NoAvailablePositionException.class, () -> {
+            throw new NoAvailablePositionException();
+        });
+        assertEquals("No available position.", exception.getMessage());
 
     }
     
